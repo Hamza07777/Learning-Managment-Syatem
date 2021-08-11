@@ -22,6 +22,8 @@ use App\Http\Controllers\LocationController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\PayPalPaymentController;
+use App\Http\Controllers\StripePaymentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
 
@@ -39,7 +41,7 @@ Route::get('/clear-cache', function() {
     $run = Artisan::call('config:clear');
     $run = Artisan::call('cache:clear');
     $run = Artisan::call('config:cache');
-    return 'FINISHED';  
+    return 'FINISHED';
 });
 Route::get('/welcome', function () {
     return view('welcome');
@@ -54,7 +56,13 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('/quiz_download/{file}',[App\Http\Controllers\QuizController::class,'download'])->name('quiz_download');
     Route::get('/download/{file}',[App\Http\Controllers\AssignmentController::class,'download'])->name('download');
 
+    Route::get('handle-payment', [App\Http\Controllers\PayPalPaymentController::class,'handlePayment'])->name('make.payment');
+    Route::get('cancel-payment', [App\Http\Controllers\PayPalPaymentController::class,'paymentCancel'])->name('cancel.payment');
+    Route::get('payment-success', [App\Http\Controllers\PayPalPaymentController::class,'paymentSuccess'])->name('success.payment');
 
+
+    Route::get('stripe', [StripePaymentController::class, 'stripe']);
+Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
   });
 
 
@@ -167,16 +175,16 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
 Route::group(['middleware' => ['auth','verified','checkUserType:user']], function () {
 
     Route::resource('user-coureses', frontendController::class);
-  
+
     Route::get('/user_profile', [App\Http\Controllers\UserController::class, 'user_profile'])->name('user_profile');
 
 
     Route::get('/completed_courses', [App\Http\Controllers\frontendController::class, 'completed_courses'])->name('completed_courses');
 
     Route::post('/update_password', [App\Http\Controllers\frontendController::class, 'update_password'])->name('update_password');
-  
+
     Route::get('/start_course/{id}', [App\Http\Controllers\frontendController::class, 'start_course'])->name('start_course');
-  
+
     Route::post('/complete_course/{id}', [App\Http\Controllers\frontendController::class, 'complete_course'])->name('complete_course');
 
     Route::get('/home', [App\Http\Controllers\UserController::class, 'index'])->name('home');
@@ -212,7 +220,7 @@ Route::group(['middleware' => ['auth','verified','checkUserType:user']], functio
 
     Route::get('/all_course_instructor_quizzes', [App\Http\Controllers\QuizController::class, 'all_course_instructor_quizzes'])->name('all_course_instructor_quizzes');
 
-    
+
 
     Route::get('/all_user_course_instructor_assignment', [App\Http\Controllers\AssignmentController::class, 'all_user_course_instructor_assignment'])->name('all_user_course_instructor_assignment');
 
@@ -233,7 +241,7 @@ Route::group(['middleware' => ['auth','verified','checkUserType:user']], functio
     Route::post('/add_quiz_mark_submit_instructor/{id}', [App\Http\Controllers\QuizController::class, 'add_quiz_mark_submit_instructor'])->name('add_quiz_mark_submit_instructor');
 
 
-    
+
   });
 
 

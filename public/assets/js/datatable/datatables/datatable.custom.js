@@ -68,7 +68,12 @@ $(document).ready(function() {
         }
     });
     // Advance data table
-    var table = $('#advance-1').DataTable();
+    var table = $('#advance-1').DataTable({
+        
+         buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+        });
     $('#advance-1 tbody').on('click', 'tr', function () {
         var data = table.row( this ).data();
         alert( 'You clicked on '+data[0]+'\'s row' );

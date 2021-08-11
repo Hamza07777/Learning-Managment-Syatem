@@ -100,10 +100,10 @@
 
             <span class="media-body"><span class="f-12 f-w-600">Elana Saint</span><span class="d-block">Admin</span></span></span>
             <ul class="profile-dropdown onhover-show-div">
-
-
-
-
+            
+               
+                  
+                
                 @if (Auth::user())
                 <li><i data-feather="user"> </i>
                     <a href="">
@@ -113,32 +113,32 @@
                     <li class="f-w-600">Home</li>
                     @if (Auth::user()->role=='user')
                      <li class="f-12"><i data-feather="chevron-right"> </i><a href="{{ route('user_profile') }}">Change Password</a></li>
-                     @endif
+                     @endif 
                      @if (Auth::user()->role=='admin')
                      <li class="f-12"><i data-feather="chevron-right"> </i><a href="{{ route('admin_profile') }}">Change Password</a></li>
-                     @endif
-                     @if (Auth::user()->role=='instructor')
+                     @endif 
+                             @if (Auth::user()->role=='instructor')
                      <li class="f-12"><i data-feather="chevron-right"> </i><a href="{{ route('instructor_profile') }}">Change Password</a></li>
                      @endif
                      <li class="f-12"><i data-feather="chevron-right"> </i>Inbox</li>
                      <li class="f-12"><i data-feather="chevron-right"> </i>Taskboard</li>
                      <li class="f-12"><i data-feather="chevron-right"> </i>Settings</li>
                      <li class="f-12"><i data-feather="chevron-right"> </i><a href="">Details</a></li>
-
+      
                     <li><i data-feather="chevron-right"> </i>
                       <a class="mr-2" class="dropdown-item" href="{{ route('logout') }}"
                       onclick="event.preventDefault();
                                     document.getElementById('logout-form').submit();">
                        {{ __('Logout') }}
                    </a>
-
+      
                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                        @csrf
                    </form>
                          </li>
                 @endif
-
-
+            
+           
 
 
 
