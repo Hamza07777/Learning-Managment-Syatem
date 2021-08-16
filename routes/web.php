@@ -23,6 +23,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\PayPalPaymentController;
+use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StripePaymentController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Redirect;
@@ -84,7 +85,7 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
     Route::resource('course_quiz', Course_QuiztController::class);
     Route::resource('course_instructor', Course_InstructorController::class);
     Route::resource('course_evaluation', Course_EvaluationController::class);
-
+    Route::resource('setting', SettingController::class);
 
 
     Route::get('user-destroy/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('userDestroy');
