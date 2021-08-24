@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'slug',
+        'show_on_front_page',
+        'content',
+        'status',
+
+    ];
 }

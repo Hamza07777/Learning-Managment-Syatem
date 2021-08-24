@@ -9,8 +9,8 @@
           <li class="back-btn">
             <div class="mobile-back text-right"><span>Back</span><i class="fa fa-angle-right pl-2" aria-hidden="true"></i></div>
           </li>
-     
-         
+
+
           @if (Auth::user()->role=='admin')
             <li class="dropdown"><a class="nav-link menu-title {{ \Request::is('user.index') ? 'active' : ''}}{{  Route::is('user.create') ? 'active' : ''}} {{  \Route::current()->getName() == 'admin_profile' ? 'active' : ''}}" href="#"><i data-feather="user"></i><span>Users</span></a>
                 <ul class="nav-submenu menu-content">
@@ -18,12 +18,19 @@
                 <li><a class="{{ Route::is('user.create') ? 'active' : ''}}" href="{{  route('user.create')  }}">Add User</a></li>
                 <li><a class="{{ \Request::is('admin_profile') ? 'active' : ''}}" href="{{  route('admin_profile')  }}">Profile</a></li>
                 </ul>
-            </li> 
+            </li>
             <li class="dropdown"><a class="nav-link menu-title {{ Route::is('course.index') ? 'active' : ''}}{{  Route::is('course_evaluation.index') ? 'active' : ''}} {{  Route::is('course.create') ? 'active' : ''}}" href="#"><i data-feather="book"></i><span>Courses</span></a>
                 <ul class="nav-submenu menu-content">
                 <li><a class="{{ Route::is('course.index') ? 'active' : ''}}" href="{{  route('course.index')  }}">All Courses</a></li>
                 <li><a class="{{ Route::is('course_evaluation.index') ? 'active' : ''}}" href="{{  route('course_evaluation.index')  }}">Courses Under Evaluation</a></li>
                 <li><a class="{{ Route::is('course.create') ? 'active' : ''}}" href="{{  route('course.create')  }}">Add Course</a></li>
+
+                </ul>
+            </li>
+            <li class="dropdown"><a class="nav-link menu-title {{ Route::is('page.index') ? 'active' : ''}} {{  Route::is('page.create') ? 'active' : ''}}" href="#"><i data-feather="book"></i><span>Pages</span></a>
+                <ul class="nav-submenu menu-content">
+                <li><a class="{{ Route::is('page.index') ? 'active' : ''}}" href="{{  route('page.index')  }}">All Pages</a></li>
+                <li><a class="{{ Route::is('page.create') ? 'active' : ''}}" href="{{  route('page.create')  }}">Add Page</a></li>
 
                 </ul>
             </li>

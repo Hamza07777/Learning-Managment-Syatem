@@ -23,6 +23,7 @@ use App\Http\Controllers\QuizController;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\PayPalPaymentController;
+use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StripePaymentController;
 use Illuminate\Support\Facades\Artisan;
@@ -65,7 +66,7 @@ Route::group(['middleware' => ['auth','verified']], function () {
 
 
     Route::get('stripe', [StripePaymentController::class, 'stripe']);
-Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
+    Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
   });
 
 
@@ -88,20 +89,27 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
     Route::resource('course_instructor', Course_InstructorController::class);
     Route::resource('course_evaluation', Course_EvaluationController::class);
     Route::resource('setting', SettingController::class);
+    Route::resource('page', PagesController::class);
 
 
     Route::post('logos-save', [App\Http\Controllers\SettingController::class,'logo_store'])->name('logo_store');
     Route::post('layout-save', [App\Http\Controllers\SettingController::class,'layout_store'])->name('layout_store');
     Route::post('mail-configration-save', [App\Http\Controllers\SettingController::class,'mail_configration_store'])->name('mail_configration_store');
-    
+
     Route::post('payment-configration-save', [App\Http\Controllers\SettingController::class,'payment_configration_store'])->name('payment_configration_store');
+
+    Route::post('language-save', [App\Http\Controllers\SettingController::class,'language_store'])->name('language_store');
+
+    Route::post('remove-logo', [App\Http\Controllers\SettingController::class,'remove_logo'])->name('remove_logo');
+
+    Route::post('course/check_slug', [App\Http\Controllers\CoursesController::class, 'check_slug'])->name('course.check_slug');
+
     
-        Route::post('language-save', [App\Http\Controllers\SettingController::class,'language_store'])->name('language_store');
-        
-            Route::post('remove-logo', [App\Http\Controllers\SettingController::class,'remove_logo'])->name('remove_logo');
-            
-        Route::post('course/check_slug', [App\Http\Controllers\CoursesController::class, 'check_slug'])->name('course.check_slug');
-    
+    Route::post('page/check_slug', [App\Http\Controllers\PagesController::class, 'check_slug'])->name('page.check_slug');
+
+    Route::get('page-destroy/{id}', [App\Http\Controllers\PagesController::class, 'destroy'])->name('pageDestroy');
+
+
     Route::get('user-destroy/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('userDestroy');
     Route::post('multipleuser-destroydelete', [App\Http\Controllers\AdminController::class,'multiplecourse_quizdelete'])->name('multipleuser-destroydelete');
 
@@ -214,7 +222,7 @@ Route::group(['middleware' => ['auth','verified','checkUserType:user']], functio
 
 
 
-  Route::group(['middleware' => ['auth','verified','checkUserType:instructor']], function () {
+Route::group(['middleware' => ['auth','verified','checkUserType:instructor']], function () {
 
     Route::resource('instructor-coureses', Instructor_CourseController::class);
     Route::resource('instructor-assignment', Instructor_AssignmentController::class);
