@@ -12,7 +12,8 @@ class Page extends Model
     protected $fillable = [
         'title',
         'slug',
-        'show_on_front_page',
+        'show_on_main_menu',
+        'show_on_footer_menu',
         'content',
         'status',
 

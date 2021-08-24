@@ -40,8 +40,9 @@
                 <tr>
 
                   <th>Page Name</th>
-                  <th>Page Duration</th>
-                  <th>On Frontend</th>
+                  <th>Page Slug</th>
+                  <th>On Main Menu</th>
+                  <th>On Footer Menu</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
@@ -51,8 +52,8 @@
                 <tr>
                   <td>{{ $page->title }}</td>
                   <td>{{ $page->slug }}</td>
-                  <td>{{ $page->show_on_front_page }}</td>
-
+                  <td>{{ $page->show_on_main_menu }}</td>
+                  <td>{{ $page->show_on_footer_menu }}</td>
                   <td >
                     <label class="switch">
                       <input type="checkbox" onclick="checkFluency({{ $page->id }})"  id="{{ $page->id  }}"
@@ -83,8 +84,9 @@
               <tfoot>
                 <tr>
                     <th>Page Name</th>
-                    <th>Page Duration</th>
-                    <th>On Frontend</th>
+                    <th>Page Slug</th>
+                    <th>On Main Menu</th>
+                    <th>On Footer Menu</th>
                     <th>Status</th>
                     <th></th>
                 </tr>

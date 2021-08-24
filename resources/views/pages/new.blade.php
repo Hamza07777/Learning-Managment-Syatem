@@ -53,14 +53,14 @@
                         </div>
 
                          <div class="form-group">
-                            <label>Show On Frontend</label>
+                            <label>Show On Main menu</label>
                             <div class="input-group">
-                              <select class="js-example-basic-single col-sm-12" name="show_on_front_page">
-                                <optgroup label="Show On Frontend">
+                              <select class="js-example-basic-single col-sm-12" name="show_on_main_menu">
+                                <optgroup label="Show On Main Menu">
 
                                     <option value="Yes"
                                             @if(isset($page))
-                                                @if($page->show_on_front_page=='Yes')
+                                                @if($page->show_on_main_menu=='Yes')
                                                     selected
                                                 @endif
                                             @endif
@@ -70,7 +70,42 @@
 
                                     <option value="No"
                                             @if(isset($page))
-                                                @if($page->show_on_front_page=='No')
+                                                @if($page->show_on_main_menu=='No')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > No
+                                        </option>
+                                </optgroup>
+
+
+                              </select>
+                              @error('show_on_front_page')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                               @enderror
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Show On Footer menu</label>
+                            <div class="input-group">
+                              <select class="js-example-basic-single col-sm-12" name="show_on_footer_menu">
+                                <optgroup label="Show On Footer menu">
+
+                                    <option value="Yes"
+                                            @if(isset($page))
+                                                @if($page->show_on_footer_menu=='Yes')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > Yes
+                                        </option>
+
+
+                                    <option value="No"
+                                            @if(isset($page))
+                                                @if($page->show_on_footer_menu=='No')
                                                     selected
                                                 @endif
                                             @endif

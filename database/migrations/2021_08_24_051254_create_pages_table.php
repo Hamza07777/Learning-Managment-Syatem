@@ -17,7 +17,8 @@ class CreatePagesTable extends Migration
             $table->id();
             $table->string('title')->nullable();
             $table->string('slug')->nullable();
-            $table->enum('show_on_front_page', ['yes','no',])->nullable();
+            $table->enum('show_on_main_menu', ['yes','no',])->nullable();
+            $table->enum('show_on_footer_menu', ['yes','no',])->nullable();
             $table->enum('status', ['inactive','active',]);
             $table->longText('content')->nullable();
             $table->timestamps();

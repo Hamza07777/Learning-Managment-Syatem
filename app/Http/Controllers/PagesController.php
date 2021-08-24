@@ -51,13 +51,15 @@ class PagesController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-            'show_on_front_page' => 'required|string|max:255',
+            'show_on_main_menu' => 'required|string|max:255',
+            'show_on_footer_menu' => 'required|string|max:255',
             'content' => 'required',
        ]);
        $page=Page::create([
         'title' => $request['title'],
         'slug' => $request['slug'],
-        'show_on_front_page' => $request['show_on_front_page'],
+        'show_on_main_menu' => $request['show_on_main_menu'],
+        'show_on_footer_menu' => $request['show_on_main_menu'],
         'content' => $request['content'],
         'status' => 'active',
     ]);
@@ -117,14 +119,16 @@ class PagesController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-            'show_on_front_page' => 'required|string|max:255',
+            'show_on_main_menu' => 'required|string|max:255',
+            'show_on_footer_menu' => 'required|string|max:255',
             'content' => 'required',
        ]);
 
        $page=Page::whereId($id)->update([
         'title' => $request['title'],
         'slug' => $request['slug'],
-        'show_on_front_page' => $request['show_on_front_page'],
+        'show_on_main_menu' => $request['show_on_main_menu'],
+        'show_on_footer_menu' => $request['show_on_main_menu'],
         'content' => $request['content'],
         ]);
         if($page)
