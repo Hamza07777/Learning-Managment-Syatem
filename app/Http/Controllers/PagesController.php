@@ -33,7 +33,6 @@ class PagesController extends Controller
     public function create()
     {
         if (view()->exists('pages.new'))
-
         {
 
             return view('pages.new');

@@ -34,6 +34,13 @@
 
                 </ul>
             </li>
+            <li class="dropdown"><a class="nav-link menu-title {{ Route::is('post.index') ? 'active' : ''}} {{  Route::is('post.create') ? 'active' : ''}}" href="#"><i data-feather="hash"></i><span>Posts</span></a>
+                <ul class="nav-submenu menu-content">
+                <li><a class="{{ Route::is('post.index') ? 'active' : ''}}" href="{{  route('post.index')  }}">All Posts</a></li>
+                <li><a class="{{ Route::is('post.create') ? 'active' : ''}}" href="{{  route('post.create')  }}">Add Post</a></li>
+
+                </ul>
+            </li>
             <li class="dropdown"><a class="nav-link menu-title {{ Route::is('assignment.index') ? 'active' : ''}} {{  Route::is('all_user_course_assignment') ? 'active' : ''}}" href="#"><i data-feather="file-text"></i><span>Assignments</span></a>
                 <ul class="nav-submenu menu-content">
                 <li><a class="{{ Route::is('assignment.index') ? 'active' : ''}}" href="{{  route('assignment.index')  }}">All Assignments</a></li>

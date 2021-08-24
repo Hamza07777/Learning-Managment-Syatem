@@ -24,6 +24,7 @@ use App\Http\Controllers\TagController;
 use App\Http\Controllers\UnitController;
 use App\Http\Controllers\PayPalPaymentController;
 use App\Http\Controllers\PagesController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\StripePaymentController;
 use Illuminate\Support\Facades\Artisan;
@@ -90,7 +91,7 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
     Route::resource('course_evaluation', Course_EvaluationController::class);
     Route::resource('setting', SettingController::class);
     Route::resource('page', PagesController::class);
-
+    Route::resource('post', PostController::class);
 
     Route::post('logos-save', [App\Http\Controllers\SettingController::class,'logo_store'])->name('logo_store');
     Route::post('layout-save', [App\Http\Controllers\SettingController::class,'layout_store'])->name('layout_store');
@@ -108,6 +109,10 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
     Route::post('page/check_slug', [App\Http\Controllers\PagesController::class, 'check_slug'])->name('page.check_slug');
 
     Route::get('page-destroy/{id}', [App\Http\Controllers\PagesController::class, 'destroy'])->name('pageDestroy');
+
+    Route::post('post/check_slug', [App\Http\Controllers\PostController::class, 'check_slug'])->name('post.check_slug');
+
+    Route::get('post-destroy/{id}', [App\Http\Controllers\PostController::class, 'destroy'])->name('postDestroy');
 
 
     Route::get('user-destroy/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('userDestroy');
