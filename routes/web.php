@@ -44,6 +44,8 @@ Route::get('/clear-cache', function() {
     $run = Artisan::call('config:cache');
     return 'FINISHED';
 });
+
+
 Route::get('/welcome', function () {
     return view('welcome');
 });
@@ -88,6 +90,18 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
     Route::resource('setting', SettingController::class);
 
 
+    Route::post('logos-save', [App\Http\Controllers\SettingController::class,'logo_store'])->name('logo_store');
+    Route::post('layout-save', [App\Http\Controllers\SettingController::class,'layout_store'])->name('layout_store');
+    Route::post('mail-configration-save', [App\Http\Controllers\SettingController::class,'mail_configration_store'])->name('mail_configration_store');
+    
+    Route::post('payment-configration-save', [App\Http\Controllers\SettingController::class,'payment_configration_store'])->name('payment_configration_store');
+    
+        Route::post('language-save', [App\Http\Controllers\SettingController::class,'language_store'])->name('language_store');
+        
+            Route::post('remove-logo', [App\Http\Controllers\SettingController::class,'remove_logo'])->name('remove_logo');
+            
+        Route::post('course/check_slug', [App\Http\Controllers\CoursesController::class, 'check_slug'])->name('course.check_slug');
+    
     Route::get('user-destroy/{id}', [App\Http\Controllers\AdminController::class, 'destroy'])->name('userDestroy');
     Route::post('multipleuser-destroydelete', [App\Http\Controllers\AdminController::class,'multiplecourse_quizdelete'])->name('multipleuser-destroydelete');
 

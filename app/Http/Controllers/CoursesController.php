@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Course;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class CoursesController extends Controller
 {
@@ -57,9 +59,14 @@ class CoursesController extends Controller
             'course_retakes' => 'required|string|max:255',
             'price' => 'required|string|max:255',
             'sale_price' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'total_marks' => 'required|string|max:255',
+            'meta_keyword' => 'required|string|max:255',
+            'meta_description' => 'required|string|max:255',
+             'meta_title' => 'required|string|max:255',
             'file' => 'required',
+            'course_type' => 'required',
+            'slug'=>'required|string|max:255|unique:courses',
        ]);
 
         if ($request->hasFile('file')) {
@@ -78,6 +85,11 @@ class CoursesController extends Controller
             'sale_price' => $request['sale_price'],
             'description' => $request['description'],
             'total_marks' => $request['total_marks'],
+            'course_type' => $request['course_type'],
+            'meta_keyword' => $request['meta_keyword'],
+            'meta_description' => $request['meta_description'],
+            'meta_title' => $request['meta_title'],
+            'slug' => $request['slug'],
             'file' => $filename,
 
         ]);
@@ -137,6 +149,7 @@ class CoursesController extends Controller
      */
     public function update(Request $request, $id)
     {
+  
         $course = Course::findOrFail($id);
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
@@ -147,8 +160,13 @@ class CoursesController extends Controller
             'course_retakes' => 'required|string|max:255',
             'price' => 'required|string|max:255',
             'sale_price' => 'required|string|max:255',
-            'description' => 'required|string|max:255',
+            'description' => 'required|string',
             'total_marks' => 'required|string|max:255',
+            'course_type' => 'required',
+            'meta_keyword' => 'required|string|max:255',
+            'meta_description' => 'required|string|max:255',
+            'meta_title' => 'required|string|max:255',
+            'slug'=>'required|string|max:255|unique:courses',
        ]);
        if ($request->hasFile('file')) {
 
@@ -172,6 +190,11 @@ class CoursesController extends Controller
             'sale_price' => $request['sale_price'],
             'total_marks' => $request['total_marks'],
             'description' => $request['description'],  
+            'course_type' => $request['course_type'],
+            'meta_keyword' => $request['meta_keyword'],
+            'meta_description' => $request['meta_description'],
+            'meta_title' => $request['meta_title'],
+            'slug' => $request['slug'],
             'file' => $filename,
             ]);
         }
@@ -186,7 +209,12 @@ class CoursesController extends Controller
                 'sale_price' => $request['sale_price'],
                 'description' => $request['description'],
                 'total_marks' => $request['total_marks'],
+                'course_type' => $request['course_type'],
                 'price' => $request['price'],
+                'meta_keyword' => $request['meta_keyword'],
+                'meta_description' => $request['meta_description'],
+                'meta_title' => $request['meta_title'],
+                'slug' => $request['slug'],
                 ]);
         }
             if($course)
@@ -238,4 +266,25 @@ class CoursesController extends Controller
 
         return redirect()->route('course.index');
 	}
+	
+	public function check_slug(Request $request)
+    {
+
+        $slug = Str::slug($request->title);
+        if (Course::where('slug',$slug)->exists()) {
+                    $random = rand(0, 99999);
+                  echo json_encode($slug.'-'.$random);
+                    exit;
+                }
+                else{
+                 
+                  echo json_encode($slug);
+                    exit;
+                 
+                }
+                
+            
+        
+      
+    }
 }

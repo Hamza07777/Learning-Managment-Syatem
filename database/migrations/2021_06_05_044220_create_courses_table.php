@@ -16,8 +16,9 @@ class CreateCoursesTable extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->longText('slug')->unique();
             $table->string('course_duration')->nullable();
-            $table->string('description')->nullable();
+            $table->longText('description')->nullable();
             $table->string('no_of_student_allow')->nullable();
             $table->string('course_start_date')->nullable();
             $table->string('passing_percentage')->nullable();
@@ -26,6 +27,10 @@ class CreateCoursesTable extends Migration
             $table->string('file')->nullable();
             $table->string('sale_price')->nullable();
             $table->string('total_marks')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->longText('meta_keyword')->nullable();
+            $table->longText('meta_description')->nullable(); 
+            $table->enum('course_type', ['Published','Featured','Trending','Popular','Free']);
             $table->enum('status', ['inactive','active',]);
             $table->timestamps();
         });

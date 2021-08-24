@@ -7,8 +7,12 @@
 
             <a href="index.html">
 
-                <img src="{{ asset('public/assets/images/logo/compact-logo.png') }}" alt="">
-
+                
+                    @if(!empty(helper_logo_b_image()))  
+                        <img src="{{ asset('public/logos/'.helper_logo_b_image()) }}" class="" alt="..." width="294" height="50">
+                    @else
+                        <img src="{{ asset('public/assets/images/logo/compact-logo.png') }}" alt="">
+                    @endif
 
             </a>
         </div>
@@ -86,7 +90,8 @@
             </ul>
           </li>
           <li><a class="text-dark" href="#!" onclick="javascript:toggleFullScreen()"><i data-feather="maximize"></i></a></li>
-           <li class="theme-setting"><i data-feather="settings"></i></li>
+           <li class="theme-setting"><i data-feather="layout"></i></li>
+            <li class=""><a href="{{ route('setting.create') }}"><i data-feather="settings"></i></a></li>
           <li class="onhover-dropdown px-0"><span class="media user-header">
 
 

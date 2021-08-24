@@ -3,7 +3,7 @@
 @section("content")
 
     <div class="row">
-       
+      
       <div class="col-sm-12">
         <div class="card" style="padding: 20px;">
           <div class="card-header">
@@ -31,10 +31,23 @@
                             @enderror
                         </div>
                         <div class="form-group">
+                            <label>Course Permalink</label>
+
+                            <input id="slug" type="text" placeholder="Course Permalink" class="form-control @error('slug') is-invalid @enderror" name="slug" value="{{old('slug') ?? $course->slug ?? ''}}" required autocomplete="slug" autofocus>
+
+                            @error('slug')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        <div class="form-group">
                             <label>Course Description</label>
 
-                            <input id="description" type="text" placeholder="Course Description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{old('description') ?? $course->description ?? ''}}" required autocomplete="description" autofocus>
+                            <!--<input id="description" type="text" placeholder="Course Description" class="form-control @error('description') is-invalid @enderror" name="description" value="{{old('description') ?? $course->description ?? ''}}" required autocomplete="description" autofocus>-->
 
+                    
+                        <textarea class="ckeditor form-control @error('description') is-invalid @enderror" id="description" type="text" placeholder="Course Description"  name="description"  required autocomplete="description"> {{old('description') ?? $course->description ?? ''}} </textarea>
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -124,7 +137,7 @@
                                 </span>
                             @enderror
                         </div>
-                        <div class="form-group">
+                           <div class="form-group">
                             <label>Course Sale Price($)</label>
 
                             <input id="sale_price" type="text" placeholder="Course Sale Price ( 100 For e.g)" class="form-control @error('sale_price') is-invalid @enderror" name="sale_price" value="{{old('sale_price') ?? $course->sale_price ?? ''}}" required autocomplete="sale_price" >
@@ -135,6 +148,123 @@
                                 </span>
                             @enderror
                         </div>
+                         <div class="form-group">
+                            <label>Course Type</label>
+                            <div class="input-group">
+                              <select class="js-example-basic-single col-sm-12" name="course_type">
+                                <optgroup label="Course Type">
+                                   
+                                            <option value="Published"
+                                            @if(isset($course))
+                                                @if($course->course_type=='Published')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > Published
+                                            </option>
+                                            
+                                            
+                                             <option value="Featured"
+                                            @if(isset($course))
+                                                @if($course->course_type=='Featured')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > Featured
+                                            </option>
+                                              
+                                            
+                                             <option value="Trending"
+                                            @if(isset($course))
+                                                @if($course->course_type=='Trending')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > Trending
+                                            </option>
+                                              
+                                            
+                                             <option value="Popular"
+                                            @if(isset($course))
+                                                @if($course->course_type=='Popular')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            >Popular
+                                            </option>
+                                              
+                                            
+                                             <option value="Free"
+                                            @if(isset($course))
+                                                @if($course->course_type=='Free')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > Free
+                                            </option>
+                                            
+                                    
+                                </optgroup>
+
+
+                              </select>
+                              @error('course_type')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                               @enderror
+                            </div>
+                        </div>
+                     
+                        
+                        
+                      
+                          <div class="form-group">
+                            <label>Meta Title</label>
+
+                            <input id="meta_title" type="text" placeholder="Course Meta Title " class="form-control @error('meta_title') is-invalid @enderror" name="meta_title" value="{{old('meta_title') ?? $course->meta_title ?? ''}}" required autocomplete="meta_title" >
+
+                            @error('meta_title')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                             <div class="form-group">
+                            <label>Meta Keywords(Keyords are comma sperated)</label>
+
+                            <input id="meta_keyword" type="text" placeholder="Course Meta Keyword " class="form-control @error('meta_keyword') is-invalid @enderror" name="meta_keyword" value="{{old('meta_keyword') ?? $course->meta_keyword ?? ''}}" required autocomplete="meta_keyword" >
+
+                            @error('meta_keyword')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                             <div class="form-group">
+                            <label>Meta Description</label>
+
+                                <textarea class="ckeditor form-control @error('meta_description') is-invalid @enderror" id="meta_description" type="text" placeholder="Course Meta Description"  name="meta_description"  required autocomplete="meta_description"> {{old('meta_description') ?? $course->meta_description ?? ''}} </textarea>
+                                
+
+                            @error('meta_description')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                        
+                        
+                    
+                        
+                        
+                        
+                        
                         <div class="form-group">
                             <label for=""> Upload Image</label>
                             <input  class="form-control @error('file') is-invalid @enderror" type="file" style="border: none;height: 45px;"  name="file" accept=" image/* " value="{{ old('file') }}"  @if(!isset($course))
@@ -166,4 +296,46 @@
     </form>
  
     </div>
+    
+    <script>
+          $(document).ready(function(){
+          
+          
+          
+         
+          // Fetch all records
+        $.ajaxSetup({
+                  headers: { 'X-CSRF-Token' : $('meta[name=_token]').attr('content') }
+              });
+                 
+            
+      });
+  $('#name').change(function(e) {
+
+                $.ajax(
+          {
+              url: '{{ route("course.check_slug") }}',
+              type: 'POST',
+               dataType: 'json',
+               data: {
+                   'title': $(this).val()
+                 // "_token": token,
+               },
+      success: function (response){
+                    
+                    $('#slug').val(response);
+             
+              //   }
+          
+               // console.log(name);
+              },
+                error: function (xhr, b, c) {
+                      console.log("xhr=" + xhr + " b=" + b + " c=" + c);
+                  }
+
+          });
+    
+    
+  });
+</script>
 @endsection

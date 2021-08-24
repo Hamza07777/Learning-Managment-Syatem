@@ -39,6 +39,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
 
+<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+         $(".services_stripe_active_fields").hide();
+         $(".paypal_active_fields").hide();
+         $(".flutter_active_fields").hide();  
+         $(".services_instamojo_active_fields").hide(); 
+         $(".services_razorpay_active_fields").hide(); 
+         $(".services_cashfree_active_fields").hide(); 
+         $(".services_payu_active_fields").hide(); 
+         
+    });
+</script>
+
 <script type="text/javascript">
 
     $('.loader-wrapper').fadeOut('slow', function() {

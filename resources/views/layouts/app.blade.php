@@ -7,7 +7,7 @@
     <meta name="author" content="HAMZA BIN SAJID">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>APP</title>
+    <title>{{old('app_name')  ?? helper_app_name() ?? 'APP'}}    </title>
 
     @include("layouts.partials.css")
     <style>
@@ -96,8 +96,11 @@
         .slider.round:before {
         border-radius: 50%;
         }
-
+      {{ helper_custom_css() }}
     </style>
+    <script>
+          {{ helper_custom_js() }}
+    </script>
     <script src="{{ asset('/public/js/app.js') }}"></script>
 
 </head>
