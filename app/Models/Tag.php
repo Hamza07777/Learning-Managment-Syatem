@@ -11,6 +11,7 @@ class Tag extends Model
     protected $fillable = [
         'name',
         'description',
+        'tag_type',
     ];
 
     public function course_tag_tag()

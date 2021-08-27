@@ -3,7 +3,7 @@
 @section("content")
 
     <div class="row">
-       
+
       <div class="col-sm-12">
         <div class="card" style="padding: 20px;">
           <div class="card-header">
@@ -55,8 +55,46 @@
                           @enderror
                       </div>
 
+                      <div class="form-group">
+                        <label>Category Type</label>
+                        <div class="input-group">
+                          <select class="js-example-basic-single col-sm-12" name="category_type">
+                            <optgroup label="Category Type">
+
+                                <option value="course"
+                                    @if(isset($category))
+                                        @if($category->category_type=='course')
+                                            selected
+                                        @endif
+                                    @endif
+                                    > Course
+                                </option>
+
+
+                                <option value="post"
+                                    @if(isset($category))
+                                        @if($category->category_type=='post')
+                                            selected
+                                        @endif
+                                    @endif
+                                    > Post
+                                </option>
+                            </optgroup>
+
+
+                          </select>
+                          @error('tag_type')
+                          <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                          </span>
+                           @enderror
+                        </div>
+
+
                     </div>
-                   
+
+                    </div>
+
 
                 </div>
               </div>
@@ -70,6 +108,6 @@
         </div>
       </div>
     </form>
- 
+
     </div>
 @endsection

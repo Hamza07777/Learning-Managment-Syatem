@@ -17,6 +17,7 @@ class CreateTagsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('description')->nullable();
+            $table->enum('tag_type', ['course','post',]);
             $table->enum('status', ['inactive','active',]);
             $table->timestamps();
         });

@@ -37,7 +37,7 @@ class Course_TagController extends Controller
         if (view()->exists('course_tag.new'))
 
         {
-            $tag=Tag::all();
+            $tag=Tag::where('tag_type','course')->get();
 
             $course=Course::all();
             return view('course_tag.new')->with('course',$course)->with('tag',$tag);
@@ -100,7 +100,7 @@ class Course_TagController extends Controller
         if (view()->exists('course_tag.new'))
 
         {
-            $tag=Tag::all();
+            $tag=Tag::where('tag_type','course')->get();
 
             $course=Course::all();
 
@@ -166,7 +166,7 @@ class Course_TagController extends Controller
     public function multiplecourse_quizdelete(Request $request)
 	{
 		$id = $request->id;
-		foreach ($id as $user) 
+		foreach ($id as $user)
 		{
 			Course_Tag::where('id', $user)->delete();
 		}

@@ -3,7 +3,7 @@
 @section("content")
 
     <div class="row">
-       
+
       <div class="col-sm-12">
         <div class="card" style="padding: 20px;">
           <div class="card-header">
@@ -42,9 +42,47 @@
                                 </span>
                             @enderror
                         </div>
+                        <div class="form-group">
+                            <label>Tag Type</label>
+                            <div class="input-group">
+                              <select class="js-example-basic-single col-sm-12" name="tag_type">
+                                <optgroup label="Tag Type">
+
+                                    <option value="course"
+                                            @if(isset($tag))
+                                                @if($tag->tag_type=='course')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > Course
+                                        </option>
+
+
+                                    <option value="post"
+                                            @if(isset($tag))
+                                                @if($tag->tag_type=='post')
+                                                    selected
+                                                @endif
+                                            @endif
+                                            > Post
+                                        </option>
+                                </optgroup>
+
+
+                              </select>
+                              @error('tag_type')
+                              <span class="invalid-feedback" role="alert">
+                                  <strong>{{ $message }}</strong>
+                              </span>
+                               @enderror
+                            </div>
+
+
+                        </div>
+
 
                     </div>
-                   
+
 
                 </div>
               </div>
@@ -58,6 +96,6 @@
         </div>
       </div>
     </form>
- 
+
     </div>
 @endsection

@@ -35,7 +35,7 @@ class CategoryController extends Controller
         if (view()->exists('category.new'))
 
         {
-           
+
             return view('category.new');
         }
     }
@@ -52,6 +52,7 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'note' => 'required|string|max:255',
+            'category_type' => 'required',
        ]);
 
 
@@ -59,6 +60,8 @@ class CategoryController extends Controller
             'name' => $request['name'],
             'description' => $request['description'],
             'note' => $request['note'],
+            'category_type' => $request['category_type'],
+
         ]);
 
             if($category)
@@ -95,7 +98,7 @@ class CategoryController extends Controller
     {
         if (view()->exists('category.new'))
 
-        {    
+        {
             $category=Category::findOrFail($id);
             session()->flash('alert-type', 'success');
             session()->flash('message', 'Page is Loading .......');
@@ -116,26 +119,28 @@ class CategoryController extends Controller
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'note' => 'required|string|max:255',
-
+            'note' => 'required|string|max:255',
+            'category_type' => 'required',
        ]);
 
         $category=Category::whereId($id)->update([
             'name' => $request['name'],
             'description' => $request['description'],
             'note' => $request['note'],
+            'category_type' => $request['category_type'],
             ]);
 
             if($category)
-            {                             
-                    session()->flash('alert-type', 'success');
-                    session()->flash('message', 'Category Updated Successfully.');
-                    return redirect()->route('category.index');
+            {
+                session()->flash('alert-type', 'success');
+                session()->flash('message', 'Category Updated Successfully.');
+                return redirect()->route('category.index');
             }
             else{
                 session()->flash('alert-type', 'error');
                 session()->flash('message', 'Record Not Updated.');
                 return redirect()->back();
-            } 
+            }
     }
 
     /**
@@ -158,7 +163,7 @@ class CategoryController extends Controller
     public function multiplecourse_quizdelete(Request $request)
 	{
 		$id = $request->id;
-		foreach ($id as $user) 
+		foreach ($id as $user)
 		{
 			Category::where('id', $user)->delete();
 		}

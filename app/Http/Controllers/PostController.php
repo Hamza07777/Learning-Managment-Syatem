@@ -35,7 +35,7 @@ class PostController extends Controller
     {
         if (view()->exists('posts.new'))
         {
-            $category=Category::all();
+            $category=Category::where('category_type','post')->get();
             return view('posts.new')->with('category',$category);
         }
     }
@@ -117,7 +117,7 @@ class PostController extends Controller
         {
 
             $post=Post::findOrFail($id);
-            $category=Category::all();
+            $category=Category::where('category_type','post')->get();
             session()->flash('alert-type', 'success');
             session()->flash('message', 'Post is Loading .......');
             return view('posts.new')->with('post',$post)->with('category',$category);;
@@ -148,7 +148,7 @@ class PostController extends Controller
             if (isset($post->file) && file_exists(public_path('posts/'.$post->file))) {
                 unlink(public_path('posts/'.$post->file));
             }
-            
+
         $post=Post::whereId($id)->update([
             'title' => $request['title'],
             'slug' => $request['slug'],
@@ -207,10 +207,10 @@ class PostController extends Controller
                     exit;
                 }
                 else{
-                 
+
                   echo json_encode($slug);
                     exit;
-                 
+
                 }
 
     }

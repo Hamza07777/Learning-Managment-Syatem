@@ -18,6 +18,7 @@ class CreateCategoriesTable extends Migration
             $table->string('name')->nullable();
             $table->string('description')->nullable();
             $table->string('note')->nullable();
+            $table->enum('category_type', ['course','post',]);
             $table->enum('status', ['inactive','active',]);
             $table->timestamps();
         });

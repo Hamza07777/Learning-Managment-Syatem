@@ -36,7 +36,7 @@ class TagController extends Controller
         if (view()->exists('tag.new'))
 
         {
-           
+
             return view('tag.new');
         }
     }
@@ -52,14 +52,14 @@ class TagController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-
+            'tag_type' => 'required',
        ]);
 
 
         $tag=Tag::create([
             'name' => $request['name'],
             'description' => $request['description'],
-
+            'tag_type' => $request['tag_type'],
         ]);
 
             if($tag)
@@ -96,7 +96,7 @@ class TagController extends Controller
     {
         if (view()->exists('tag.new'))
 
-        {    
+        {
             $tag=Tag::findOrFail($id);
             session()->flash('alert-type', 'success');
             session()->flash('message', 'Page is Loading .......');
@@ -116,16 +116,17 @@ class TagController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
-
+            'tag_type' => 'required',
        ]);
 
         $tag=Tag::whereId($id)->update([
             'name' => $request['name'],
             'description' => $request['description'],
+            'tag_type' => $request['tag_type'],
             ]);
 
             if($tag)
-            {                             
+            {
                     session()->flash('alert-type', 'success');
                     session()->flash('message', 'Tag Updated Successfully.');
                     return redirect()->route('tag.index');
@@ -134,7 +135,7 @@ class TagController extends Controller
                 session()->flash('alert-type', 'error');
                 session()->flash('message', 'Record Not Updated.');
                 return redirect()->back();
-            } 
+            }
     }
 
     /**
@@ -158,7 +159,7 @@ class TagController extends Controller
     public function multiplecourse_quizdelete(Request $request)
 	{
 		$id = $request->id;
-		foreach ($id as $user) 
+		foreach ($id as $user)
 		{
 			Tag::where('id', $user)->delete();
 		}
