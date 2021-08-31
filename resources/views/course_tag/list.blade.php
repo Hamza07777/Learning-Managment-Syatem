@@ -27,7 +27,7 @@
           <h5>All Tags of Courses</h5>
           </div>
           <div class="float-right">
-            <a name="" id="" class="btn btn-primary" href="{{  route('course_tag.create')  }}" role="button">Add Tag in Course</a>
+            <!--<a name="" id="" class="btn btn-primary" href="{{  route('course_tag.create')  }}" role="button">Add Tag in Course</a>-->
           </div>
 
         </div>
@@ -71,9 +71,9 @@
                    
                     </td>
                   <td>
-                    <a href="{{route('course_tag.edit',$course_tag->id)}}">
-                        <i class="fa fa-edit text-primary mr-2"></i>
-                    </a>
+                    <!--<a href="{{route('course_tag.edit',$course_tag->id)}}">-->
+                    <!--    <i class="fa fa-edit text-primary mr-2"></i>-->
+                    <!--</a>-->
                     <a href="javascript:void(0)" data-action="{{route('course_tagDestroy',$course_tag->id)}}" class="deleteRecord">
                         <i class="fa fa-trash text-danger"></i>
                     </a>
@@ -115,7 +115,7 @@
                         <p class="sub-content">Tags in Courses are not yet added for further Proceding Add Tags in Courses</p>
                         </div>
                     <div>
-                        <a name="" id="" class="btn btn-primary" href="{{ route('course_tag.create') }}" role="button">Add Tag in Course</a>
+                        <!--<a name="" id="" class="btn btn-primary" href="{{ route('course_tag.create') }}" role="button">Add Tag in Course</a>-->
 
                 </div>
             </div>

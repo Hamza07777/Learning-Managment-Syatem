@@ -36,7 +36,7 @@ class TagController extends Controller
         if (view()->exists('tag.new'))
 
         {
-
+           
             return view('tag.new');
         }
     }
@@ -96,7 +96,7 @@ class TagController extends Controller
     {
         if (view()->exists('tag.new'))
 
-        {
+        {    
             $tag=Tag::findOrFail($id);
             session()->flash('alert-type', 'success');
             session()->flash('message', 'Page is Loading .......');
@@ -126,7 +126,7 @@ class TagController extends Controller
             ]);
 
             if($tag)
-            {
+            {                             
                     session()->flash('alert-type', 'success');
                     session()->flash('message', 'Tag Updated Successfully.');
                     return redirect()->route('tag.index');
@@ -135,7 +135,7 @@ class TagController extends Controller
                 session()->flash('alert-type', 'error');
                 session()->flash('message', 'Record Not Updated.');
                 return redirect()->back();
-            }
+            } 
     }
 
     /**
@@ -159,7 +159,7 @@ class TagController extends Controller
     public function multiplecourse_quizdelete(Request $request)
 	{
 		$id = $request->id;
-		foreach ($id as $user)
+		foreach ($id as $user) 
 		{
 			Tag::where('id', $user)->delete();
 		}

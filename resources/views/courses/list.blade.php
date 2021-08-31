@@ -34,8 +34,9 @@
           <div class="table-responsive">
             <form method="post" action="{{url('multiplecourse-destroydelete')}}">
                 {{ csrf_field() }}
-                
-            <table class="display" id="advance-1" >
+
+
+            <table class="display" id="advance-1">
 
               <thead>
                 <tr>

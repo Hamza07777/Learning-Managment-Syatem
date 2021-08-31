@@ -27,7 +27,7 @@
           <h5>All Locations of Courses</h5>
           </div>
           <div class="float-right">
-            <a name="" id="" class="btn btn-primary" href="{{  route('course_location.create')  }}" role="button">Add Location in Course</a>
+            <!--<a name="" id="" class="btn btn-primary" href="{{  route('course_location.create')  }}" role="button">Add Location in Course</a>-->
           </div>
 
         </div>
@@ -70,9 +70,9 @@
                    
                     </td>
                   <td>
-                    <a href="{{route('course_location.edit',$course_location->id)}}">
-                        <i class="fa fa-edit text-primary mr-2"></i>
-                    </a>
+                    <!--<a href="{{route('course_location.edit',$course_location->id)}}">-->
+                    <!--    <i class="fa fa-edit text-primary mr-2"></i>-->
+                    <!--</a>-->
                     <a href="javascript:void(0)" data-action="{{route('course_locationDestroy',$course_location->id)}}" class="deleteRecord">
                         <i class="fa fa-trash text-danger"></i>
                     </a>
@@ -114,7 +114,7 @@
                         <p class="sub-content">Locations in Courses are not yet added for further Proceding Add Locations in Courses</p>
                         </div>
                     <div>
-                        <a name="" id="" class="btn btn-primary" href="{{ route('course_location.create') }}" role="button">Add Location in Course</a>
+                        <!--<a name="" id="" class="btn btn-primary" href="{{ route('course_location.create') }}" role="button">Add Location in Course</a>-->
 
                 </div>
             </div>

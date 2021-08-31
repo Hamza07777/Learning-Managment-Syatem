@@ -27,7 +27,7 @@
           <h5>All Quizzes of Courses</h5>
           </div>
           <div class="float-right">
-            <a name="" id="" class="btn btn-primary" href="{{  route('course_quiz.create')  }}" role="button">Add Quiz in Course</a>
+            <!--<a name="" id="" class="btn btn-primary" href="{{  route('course_quiz.create')  }}" role="button">Add Quiz in Course</a>-->
           </div>
 
         </div>
@@ -72,9 +72,9 @@
 
                     </td>
                   <td>
-                    <a href="{{route('course_quiz.edit',$course_quiz->id)}}">
-                        <i class="fa fa-edit text-primary mr-2"></i>
-                    </a>
+                    <!--<a href="{{route('course_quiz.edit',$course_quiz->id)}}">-->
+                    <!--    <i class="fa fa-edit text-primary mr-2"></i>-->
+                    <!--</a>-->
                     <a href="javascript:void(0)" data-action="{{route('course_quizDestroy',$course_quiz->id)}}" class="deleteRecord">
                         <i class="fa fa-trash text-danger"></i>
                     </a>
@@ -116,7 +116,7 @@
                         <p class="sub-content">Quizzes in Courses are not yet added for further Proceding Add Quizzes in Courses</p>
                         </div>
                     <div>
-                        <a name="" id="" class="btn btn-primary" href="{{ route('course_quiz.create') }}" role="button">Add Quiz in Course</a>
+                        <!--<a name="" id="" class="btn btn-primary" href="{{ route('course_quiz.create') }}" role="button">Add Quiz in Course</a>-->
 
                 </div>
             </div>

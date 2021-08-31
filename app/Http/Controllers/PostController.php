@@ -148,7 +148,7 @@ class PostController extends Controller
             if (isset($post->file) && file_exists(public_path('posts/'.$post->file))) {
                 unlink(public_path('posts/'.$post->file));
             }
-
+            
         $post=Post::whereId($id)->update([
             'title' => $request['title'],
             'slug' => $request['slug'],
@@ -207,10 +207,10 @@ class PostController extends Controller
                     exit;
                 }
                 else{
-
+                 
                   echo json_encode($slug);
                     exit;
-
+                 
                 }
 
     }

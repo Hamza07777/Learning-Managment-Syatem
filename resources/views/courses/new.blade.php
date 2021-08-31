@@ -9,6 +9,7 @@
           <div class="card-header">
             <h5>{{isset($course)?'Edit':'Add New'}} Course</h5>
           </div>
+ 
           <div class="card-body">
             <div class="row">
               <div class="col">
@@ -258,12 +259,129 @@
                                 </span>
                             @enderror
                         </div>
+   
+                    <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                       <label>Category Name</label>
+                       <br>
+
+                      @foreach($category as $category)
+                          <div class="checkbox checkbox-primary">
+                            <input id="inline-{{$category->id}}" type="checkbox" value="{{$category->id}}" name="category_id[]" 
+                            
+                                @if(isset($course))
+                                    @foreach($course_category as $course_categorys)
+                                        @if($course_categorys->category_id == $category->id)
+                                            checked
+                                          @endif
+                                    @endforeach       
+                                @endif
+
+                            >
+                            <label for="inline-{{$category->id}}">{{ $category->name }}</label>
+                          </div>
+                      @endforeach    
+                        </div>
                         
                         
+                        
+                        
+                        
+                      <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                       <label>Tag Name</label>
+                       <br>
+
+                      @foreach($tag as $tag)
+                          <div class="checkbox checkbox-primary">
+                            <input id="inline-{{$tag->id}}" type="checkbox" value="{{$tag->id}}" name="tag_id[]" 
+                            
+                                @if(isset($course))
+                                    @foreach($course_tag as $course_tags)
+                                        @if($course_tags->tag_id == $tag->id)
+                                            checked
+                                          @endif
+                                    @endforeach       
+                                @endif
+
+                            >
+                            <label for="inline-{{$tag->id}}">{{ $tag->name }}</label>
+                          </div>
+                      @endforeach    
+                        </div>
+                        
+                        
+                    <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                       <label>Location Name</label>
+                       <br>
+
+                      @foreach($location as $location)
+                          <div class="checkbox checkbox-primary">
+                            <input id="inline-{{$location->id}}" type="checkbox" value="{{$location->id}}" name="location_id[]" 
+                            
+                                @if(isset($course))
+                                    @foreach($course_location as $course_locations)
+                                        @if($course_locations->location_id == $location->id)
+                                            checked
+                                          @endif
+                                    @endforeach       
+                                @endif
+
+                            >
+                            <label for="inline-{{$location->id}}">{{ $location->location }}</label>
+                          </div>
+                      @endforeach    
+                        </div>
+                            
+                        
+                        
+                  <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                       <label>Assignment Name</label>
+                       <br>
+
+                      @foreach($assignment as $assignment)
+                          <div class="checkbox checkbox-primary">
+                            <input id="inline-{{$assignment->id}}" type="checkbox" value="{{$assignment->id}}" name="assignment_id[]" 
+                            
+                                @if(isset($course))
+                                    @foreach($course_assignment as $course_assignments)
+                                        @if($course_assignments->assignment_id == $assignment->id)
+                                            checked
+                                          @endif
+                                    @endforeach       
+                                @endif
+
+                            >
+                            <label for="inline-{{$assignment->id}}">{{ $assignment->title }}</label>
+                          </div>
+                      @endforeach    
+                        </div>    
                     
+                    
+                    <div class="form-group m-t-15 m-checkbox-inline mb-0">
+                       <label>Quiz Name</label>
+                       <br>
+
+                      @foreach($quiz as $quiz)
+                          <div class="checkbox checkbox-primary">
+                            <input id="inline-{{$quiz->id}}" type="checkbox" value="{{$quiz->id}}" name="quiz_id[]" 
+                            
+                                @if(isset($course))
+                                    @foreach($course_quiz as $course_quizs)
+                                        @if($course_quizs->quiz_id == $quiz->id)
+                                            checked
+                                          @endif
+                                    @endforeach       
+                                @endif
+
+                            >
+                            <label for="inline-{{$quiz->id}}">{{ $quiz->title }}</label>
+                          </div>
+                      @endforeach    
+                        </div>      
+   
+
                         
                         
-                        
+                                                
                         
                         <div class="form-group">
                             <label for=""> Upload Image</label>

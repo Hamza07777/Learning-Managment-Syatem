@@ -46,6 +46,7 @@
                   <th>Category Name</th>
                   <th>Category Description</th>
                   <th>Category Note</th>
+                  <th>Category Type</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
@@ -58,6 +59,7 @@
                   <td>{{ $category->name }}</td>
                   <td>{{ $category->description }}</td>
                   <td>{{ $category->note }}</td>
+                  <td>{{ $category->category_type }}</td>
                   <td >
                     <label class="switch">
                       <input type="checkbox" onclick="checkFluency({{ $category->id }})"  id="{{ $category->id  }}"

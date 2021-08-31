@@ -2,7 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Course_Tag;
+use App\Models\Category;
+use App\Models\Assignment;
 use App\Models\Course;
+use App\Models\Course_Assignment;
+use App\Models\Course_Category;
+use App\Models\Tag;
+use App\Models\Course_Quiz;
+use App\Models\Quiz;
+use App\Models\Course_Location;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -37,8 +47,12 @@ class CoursesController extends Controller
         if (view()->exists('courses.new'))
 
         {
-           
-            return view('courses.new');
+            $category=Category::where('category_type','course')->get();
+            $location=Location::all();
+            $tag=Tag::where('tag_type','course')->get();
+            $assignment=Assignment::all();
+            $quiz=Quiz::all();
+            return view('courses.new')->with('tag',$tag)->with('location',$location)->with('category',$category)->with('assignment',$assignment)->with('quiz',$quiz);
         }
     }
 
@@ -93,7 +107,61 @@ class CoursesController extends Controller
             'file' => $filename,
 
         ]);
+        $course_id = $course->id;
+        $lenght=count((array)$request->get('tag_id')) ;
+        if($lenght > 0){
+            for ($i=0; $i <$lenght ; $i++) {
+                Course_Tag::create([
+                     'tag_id' => $request->tag_id[$i],
+                     'course_id' => $course_id,
+     
+                 ]);
+             }
+        }
+        
+        $location_idlenght=count((array)$request->get('location_id')) ;
+          if($location_idlenght > 0){
+            for ($i=0; $i <$location_idlenght ; $i++) {
+                Course_Location::create([
+                    'location_id' => $request->location_id[$i],
+                     'course_id' => $course_id,
+        
+                ]);
+             }
+        }
 
+        $category_idlenght=count((array)$request->get('category_id')) ;
+          if($category_idlenght > 0){
+            for ($i=0; $i <$category_idlenght ; $i++) {
+                Course_Category::create([
+                'category_id' => $request->category_id[$i],
+                'course_id' => $course_id,
+
+                 ]);
+             }
+        }
+        
+        $assignment_idlenght=count((array)$request->get('assignment_id')) ;
+          if($assignment_idlenght > 0){
+            for ($i=0; $i <$assignment_idlenght ; $i++) {
+                Course_Assignment::create([
+                    'assignment_id' => $request->assignment_id[$i],
+                    'course_id' => $course_id,
+        
+                ]);
+             }
+        }
+        
+        $quiz_idlenght=count((array)$request->get('quiz_id')) ;
+          if($quiz_idlenght > 0){
+            for ($i=0; $i <$quiz_idlenght ; $i++) {
+                Course_Quiz::create([
+                'quiz_id' => $request->quiz_id[$i],
+                'course_id' => $course_id,
+
+                ]);
+             }
+        }
             if($course)
             {
 
@@ -131,11 +199,20 @@ class CoursesController extends Controller
         if (view()->exists('courses.new'))
 
         {
-           
             $course=Course::findOrFail($id);
+            $tag=Tag::where('tag_type','course')->get();
+            $course_tag=Course_Tag::where('course_id',$id)->get();
+            $course_location=Course_Location::where('course_id',$id)->get();
+            $category=Category::where('category_type','course')->get();
+            $course_category=Course_Category::where('course_id',$id)->get();
+            $location=Location::all();
+            $assignment=Assignment::all();
+            $quiz=Quiz::all();
+            $course_quiz=Course_Quiz::where('course_id',$id)->get();
+            $course_assignment=Course_Assignment::where('course_id',$id)->get();
             session()->flash('alert-type', 'success');
             session()->flash('message', 'Page is Loading .......');
-            return view('courses.new')->with('course',$course);
+            return view('courses.new')->with('course',$course)->with('tag',$tag)->with('course_tag',$course_tag)->with('location',$location)->with('course_location',$course_location)->with('course_category',$course_category)->with('category',$category)->with('course_assignment',$course_assignment)->with('assignment',$assignment)->with('quiz',$quiz)->with('course_quiz',$course_quiz);
         }
         
     }
@@ -151,6 +228,26 @@ class CoursesController extends Controller
     {
   
         $course = Course::findOrFail($id);
+        $course_tag=Course_Tag::where('course_id',$id)->count();
+            if( $course_tag > 0){
+                Course_Tag::where('course_id',$id)->delete();
+            }
+        $course_location=Course_Location::where('course_id',$id)->count();
+            if( $course_location > 0){
+                Course_Location::where('course_id',$id)->delete();
+            }
+        $course_category=Course_Category::where('course_id',$id)->count();
+            if( $course_category > 0){
+                Course_Category::where('course_id',$id)->delete();
+            }
+        $course_assignment=Course_Assignment::where('course_id',$id)->count();
+            if( $course_assignment > 0){
+                Course_Assignment::where('course_id',$id)->delete();
+            } 
+        $course_quiz=Course_Quiz::where('course_id',$id)->count();
+            if( $course_quiz > 0){
+                Course_Quiz::where('course_id',$id)->delete();
+            }      
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'course_duration' => 'required|string|max:255',
@@ -166,7 +263,7 @@ class CoursesController extends Controller
             'meta_keyword' => 'required|string|max:255',
             'meta_description' => 'required|string|max:255',
             'meta_title' => 'required|string|max:255',
-            'slug'=>'required|string|max:255|unique:courses',
+            'slug'=>'required|string|max:255',
        ]);
        if ($request->hasFile('file')) {
 
@@ -217,6 +314,60 @@ class CoursesController extends Controller
                 'slug' => $request['slug'],
                 ]);
         }
+        $lenght=count((array)$request->get('tag_id')) ;
+        if($lenght > 0){
+            for ($i=0; $i <$lenght ; $i++) {
+                Course_Tag::create([
+                     'tag_id' => $request->tag_id[$i],
+                     'course_id' => $id,
+     
+                 ]);
+             }
+        }
+        
+        $location_idlenght=count((array)$request->get('location_id')) ;
+          if($location_idlenght > 0){
+            for ($i=0; $i <$location_idlenght ; $i++) {
+                Course_Location::create([
+                    'location_id' => $request->location_id[$i],
+                     'course_id' => $id,
+        
+                ]);
+             }
+        }
+        
+        $category_idlenght=count((array)$request->get('category_id')) ;
+          if($category_idlenght > 0){
+            for ($i=0; $i <$category_idlenght ; $i++) {
+                Course_Category::create([
+                'category_id' => $request->category_id[$i],
+                'course_id' => $id,
+
+                 ]);
+             }
+        }
+        
+        $assignment_idlenght=count((array)$request->get('assignment_id')) ;
+          if($assignment_idlenght > 0){
+            for ($i=0; $i <$assignment_idlenght ; $i++) {
+                Course_Assignment::create([
+                    'assignment_id' => $request->assignment_id[$i],
+                    'course_id' => $id,
+        
+                ]);
+             }
+        }
+        
+        $quiz_idlenght=count((array)$request->get('quiz_id')) ;
+          if($quiz_idlenght > 0){
+            for ($i=0; $i <$quiz_idlenght ; $i++) {
+                Course_Quiz::create([
+                'quiz_id' => $request->quiz_id[$i],
+                'course_id' => $id,
+
+                ]);
+             }
+        }
             if($course)
             {                             
                     session()->flash('alert-type', 'success');
@@ -242,6 +393,30 @@ class CoursesController extends Controller
         if (isset($course->file) && file_exists(public_path('course/'.$course->file))) {
             unlink(public_path('course/'.$course->file));
         }
+        
+        $course_tag=Course_Tag::where('course_id',$id)->count();
+            if( $course_tag > 0){
+                Course_Tag::where('course_id',$id)->delete();
+            }
+        $course_location=Course_Location::where('course_id',$id)->count();
+            if( $course_location > 0){
+                Course_Location::where('course_id',$id)->delete();
+            }   
+        $course_category=Course_Category::where('course_id',$id)->count();
+            if( $course_category > 0){
+                Course_Category::where('course_id',$id)->delete();
+            } 
+        $course_assignment=Course_Assignment::where('course_id',$id)->count();
+            if( $course_assignment > 0){
+                Course_Assignment::where('course_id',$id)->delete();
+            }    
+        $course_quiz=Course_Quiz::where('course_id',$id)->count();
+            if( $course_quiz > 0){
+                Course_Quiz::where('course_id',$id)->delete();
+            }             
+        
+        
+            
         $course->delete();
 
         session()->flash('alert-type', 'success');

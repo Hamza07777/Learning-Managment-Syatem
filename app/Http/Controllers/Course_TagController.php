@@ -166,7 +166,7 @@ class Course_TagController extends Controller
     public function multiplecourse_quizdelete(Request $request)
 	{
 		$id = $request->id;
-		foreach ($id as $user)
+		foreach ($id as $user) 
 		{
 			Course_Tag::where('id', $user)->delete();
 		}

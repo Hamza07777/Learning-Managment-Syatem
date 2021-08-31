@@ -33,6 +33,7 @@ class PagesController extends Controller
     public function create()
     {
         if (view()->exists('pages.new'))
+
         {
 
             return view('pages.new');
@@ -47,11 +48,12 @@ class PagesController extends Controller
      */
     public function store(Request $request)
     {
+     
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-            'show_on_main_menu' => 'required|string|max:255',
-            'show_on_footer_menu' => 'required|string|max:255',
+            'show_on_main_menu' => 'required',
+            'show_on_footer_menu' => 'required',
             'content' => 'required',
        ]);
        $page=Page::create([

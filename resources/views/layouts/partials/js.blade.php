@@ -30,6 +30,11 @@
 <script src="{{ asset('public/assets/js/datepicker/date-picker/datepicker.custom.js') }}"></script>
 <script src="{{ asset('public/assets/js/datatable/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('public/assets/js/datatable/datatables/datatable.custom.js') }}"></script>
+
+
+
+
+
 <script src="{{ asset('public/assets/js/modal-animated.js') }}"></script>
 <script src="{{ asset('public/assets/js/form-wizard/form-wizard-five.js') }}"></script>
 <script src="{{ asset('public/assets/js/product-tab.js') }}"></script>

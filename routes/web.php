@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
     Route::resource('page', PagesController::class);
     Route::resource('post', PostController::class);
 
+
     Route::post('logos-save', [App\Http\Controllers\SettingController::class,'logo_store'])->name('logo_store');
     Route::post('layout-save', [App\Http\Controllers\SettingController::class,'layout_store'])->name('layout_store');
     Route::post('mail-configration-save', [App\Http\Controllers\SettingController::class,'mail_configration_store'])->name('mail_configration_store');

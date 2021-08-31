@@ -9,6 +9,7 @@ class Course extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'name',
         'course_duration',
@@ -21,6 +22,11 @@ class Course extends Model
         'description',
         'sale_price',
         'total_marks',
+        'slug',
+        'meta_title',
+        'meta_keyword',
+        'meta_description',
+        'course_type',
     ];
 
 }

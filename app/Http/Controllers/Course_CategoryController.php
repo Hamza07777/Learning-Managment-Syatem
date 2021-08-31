@@ -38,6 +38,7 @@ class Course_CategoryController extends Controller
 
         {
             $category=Category::where('category_type','course')->get();
+
             $course=Course::all();
             return view('course_category.new')->with('course',$course)->with('category',$category);
         }
@@ -56,23 +57,25 @@ class Course_CategoryController extends Controller
             'course_id' => 'required',
 
        ]);
+
+
         $course_category=Course_Category::create([
             'category_id' => $request['category_id'],
             'course_id' => $request['course_id'],
 
         ]);
 
-        if($course_category)
-        {
-            session()->flash('alert-type', 'success');
-            session()->flash('message', 'Record added successfully');
-            return redirect()->route('course_category.index');
-        }
-        else{
-            session()->flash('alert-type', 'error');
-            session()->flash('message', 'Record Not Added.');
-            return redirect()->back();
-        }
+            if($course_category)
+            {
+                session()->flash('alert-type', 'success');
+                session()->flash('message', 'Record added successfully');
+                return redirect()->route('course_category.index');
+            }
+            else{
+                session()->flash('alert-type', 'error');
+                session()->flash('message', 'Record Not Added.');
+                return redirect()->back();
+            }
     }
 
     /**
@@ -162,7 +165,7 @@ class Course_CategoryController extends Controller
     public function multiplecourse_quizdelete(Request $request)
 	{
 		$id = $request->id;
-		foreach ($id as $user)
+		foreach ($id as $user) 
 		{
 			Course_Category::where('id', $user)->delete();
 		}

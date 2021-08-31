@@ -14,5 +14,4 @@ class Category extends Model
         'note',
         'category_type',
     ];
-
 }

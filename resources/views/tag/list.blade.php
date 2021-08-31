@@ -43,6 +43,7 @@
 
                   <th>Tag Name</th>
                   <th>Tag Description</th>
+                  <th>Tag Type</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
@@ -54,6 +55,7 @@
                         value="<?php echo $tag->id; ?>"></td>
                   <td>{{ $tag->name }}</td>
                   <td>{{ $tag->description }}</td>
+                  <td>{{ $tag->tag_type }}</td>
                   <td >
                     <label class="switch">
                       <input type="checkbox" onclick="checkFluency({{ $tag->id }})"  id="{{ $tag->id  }}"
