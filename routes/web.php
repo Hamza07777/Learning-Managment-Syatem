@@ -52,6 +52,18 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+
+Route::get('auth/google',[App\Http\Controllers\GoogleController::class,'redirectToGoogle'])->name('auth.google');
+Route::get('auth/google/callback',[App\Http\Controllers\GoogleController::class,'handleGoogleCallback'])->name('auth.google.callback');
+
+Route::get('auth/facebook',[App\Http\Controllers\GoogleController::class,'facebookRedirect'])->name('auth.facebook');
+Route::get('auth/facebook/callback',[App\Http\Controllers\GoogleController::class,'loginWithFacebook'])->name('auth.facebook.callback');
+
+Route::get('auth/github',[App\Http\Controllers\GoogleController::class,'githubRedirect'])->name('auth.github');
+Route::get('auth/github/callback',[App\Http\Controllers\GoogleController::class,'loginWithgithub'])->name('auth.github.callback');
+
+
+
 Auth::routes(['verify' => true]);
 
 //Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -69,7 +81,6 @@ Route::group(['middleware' => ['auth','verified']], function () {
     Route::get('stripe', [StripePaymentController::class, 'stripe']);
     Route::post('stripe', [StripePaymentController::class, 'stripePost'])->name('stripe.post');
   });
-
 
 
 Route::group(['middleware' => ['auth','verified','checkUserType:admin']], function () {
@@ -106,7 +117,7 @@ Route::group(['middleware' => ['auth','verified','checkUserType:admin']], functi
 
     Route::post('course/check_slug', [App\Http\Controllers\CoursesController::class, 'check_slug'])->name('course.check_slug');
 
-    
+
     Route::post('page/check_slug', [App\Http\Controllers\PagesController::class, 'check_slug'])->name('page.check_slug');
 
     Route::get('page-destroy/{id}', [App\Http\Controllers\PagesController::class, 'destroy'])->name('pageDestroy');

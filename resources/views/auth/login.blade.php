@@ -50,14 +50,18 @@
                           <div class="login-divider"></div>
                           <div class="social mt-3">
                             <div class="form-row btn-showcase">
-                              <div class="col-md-4 col-sm-6">
-                                <button class="btn social-btn btn-fb">Facebook</button>
+                              <div class="col-md-3 col-sm-6">
+                                <a href="{{ route('auth.facebook') }}" class="btn social-btn btn-fb">Facebook</a>
                               </div>
-                              <div class="col-md-4 col-sm-6">
-                                <button class="btn social-btn btn-twitter">Twitter</button>
+                              <div class="col-md-3 col-sm-6">
+                                <a class="btn social-btn btn-twitter">Twitter</a>
                               </div>
-                              <div class="col-md-4 col-sm-6">
-                                <button class="btn social-btn btn-google">Google + </button>
+                              
+                              <div class="col-md-3 col-sm-6">
+                                <a href="{{ route('auth.google') }}" class="btn social-btn btn-google">Google</a>
+                              </div>
+                              <div class="col-md-3 col-sm-6">
+                                <a href="{{ route('auth.github') }}" class="btn social-btn btn-primary">Github</a>
                               </div>
                             </div>
                           </div>
@@ -127,16 +131,20 @@
                             </div>
                             <div class="form-divider"></div>
                             <div class="social mt-3">
-                              <div class="form-row btn-showcase">
-                                <div class="col-sm-4">
-                                  <button class="btn social-btn btn-fb">Facebook</button>
-                                </div>
-                                <div class="col-sm-4">
-                                  <button class="btn social-btn btn-twitter">Twitter</button>
-                                </div>
-                                <div class="col-sm-4">
-                                  <button class="btn social-btn btn-google">Google +</button>
-                                </div>
+                                <div class="form-row btn-showcase">
+                                    <div class="col-md-3 col-sm-6">
+                                      <a href="{{ route('auth.facebook') }}" class="btn social-btn btn-fb">Facebook</a>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                      <a class="btn social-btn btn-twitter">Twitter</a>
+                                    </div>
+                                    
+                                    <div class="col-md-3 col-sm-6">
+                                      <a href="{{ route('auth.google') }}" class="btn social-btn btn-google">Google</a>
+                                    </div>
+                                    <div class="col-md-3 col-sm-6">
+                                      <a href="{{ route('auth.github') }}"  class="btn social-btn btn-primary">Github</a>
+                                    </div>
                               </div>
                             </div>
                           </form>
